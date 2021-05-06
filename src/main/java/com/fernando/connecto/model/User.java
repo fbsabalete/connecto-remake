@@ -20,7 +20,6 @@ public class User {
     @Size(min=2, max = 255) @NotEmpty @NotNull
     private String password;
     private String userType;
-    @Size(max = 255)
     private String about;
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Post> post;
@@ -92,7 +91,7 @@ public class User {
     }
 
     public void setAbout(String about) {
-        this.userType = about;
+        this.about = about;
     }
 
     public List<Post> getPost() {
