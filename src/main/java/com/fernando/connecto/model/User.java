@@ -23,6 +23,8 @@ public class User {
     private String about;
     @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
     private List<Post> post;
+    @OneToMany(mappedBy = "user", cascade = CascadeType.REMOVE)
+    private List<Portfolio> portfolio;
 
     public User() {
     }
@@ -36,6 +38,14 @@ public class User {
         this.userType = userType;
         this.about = about;
         this.post = post;
+    }
+
+    public List<Portfolio> getPortfolio() {
+        return portfolio;
+    }
+
+    public void setPortfolio(List<Portfolio> portfolio) {
+        this.portfolio = portfolio;
     }
 
     public long getId() {

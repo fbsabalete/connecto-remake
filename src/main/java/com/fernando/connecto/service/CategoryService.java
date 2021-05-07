@@ -28,8 +28,9 @@ public class CategoryService {
     }
 
     public Category findById(long id){
-        Optional<Category> obj = categoryRepository.findById(id);
-        return obj.isPresent() ? obj.get() : obj.orElseThrow(() -> new ObjectNotFoundException("Category id="+id+" not found"));
+//        Optional<Category> obj = categoryRepository.findById(id);
+//        return obj.isPresent() ? obj.get() : obj.orElseThrow(() -> new ObjectNotFoundException("Category id="+id+" not found"));
+        return categoryRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("Category id="+id+" not found"));
     }
 
     public List<Category> findAll (){

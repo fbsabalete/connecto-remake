@@ -26,7 +26,7 @@ public class UserService {
     private BCryptPasswordEncoder passwordEncoder;
 
     private void checkEmailAvailable(String email){
-        if(findByEmail(email).isPresent()){
+        if(userRepository.findByEmailIgnoreCase(email).isPresent()){
             throw new ObjectAlreadyPresentException("Email already signed up");
         }
     }
@@ -44,8 +44,9 @@ public class UserService {
     }
 
     public User findById (long id){
-        Optional<User> obj = userRepository.findById(id);
-        return obj.isPresent() ? obj.get() : obj.orElseThrow(() -> new ObjectNotFoundException("User id="+id+" not found"));
+//        Optional<User> obj = userRepository.findById(id);
+//        return obj.isPresent() ? obj.get() : obj.orElseThrow(() -> new ObjectNotFoundException("User id="+id+" not found"));
+        return userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException("User id="+id+" not found"));
     }
 
     public User save(User user){

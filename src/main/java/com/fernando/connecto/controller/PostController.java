@@ -1,6 +1,7 @@
 package com.fernando.connecto.controller;
 
 import com.fernando.connecto.model.Post;
+import com.fernando.connecto.model.dto.PostDTO;
 import com.fernando.connecto.service.CategoryService;
 import com.fernando.connecto.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,13 +30,13 @@ public class PostController {
     }
 
     @PostMapping
-    public ResponseEntity<Post> save(@RequestBody @Valid Post post){
-        return ResponseEntity.status(HttpStatus.CREATED).body(postService.save(post));
+    public ResponseEntity<PostDTO> save(@RequestBody @Valid Post post){
+        return ResponseEntity.status(HttpStatus.CREATED).body(new PostDTO(postService.save(post)));
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Post> update(@PathVariable long id, @RequestBody @Valid Post post){
-        return ResponseEntity.ok(postService.update(id, post));
+    public ResponseEntity<PostDTO> update(@PathVariable long id, @RequestBody @Valid Post post){
+        return ResponseEntity.ok(new PostDTO(postService.update(id, post)));
     }
 
     @DeleteMapping("/{id}")

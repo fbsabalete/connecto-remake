@@ -23,7 +23,7 @@ public class UserAuthService implements UserDetailsService {
         if (user.isPresent()) {
             return user.map(UserDetailsImpl::new).get();
         }
-        throw new UsernameNotFoundException("Dados inválidos!");
+        throw new UsernameNotFoundException("Invalid information");
     }
 
 
