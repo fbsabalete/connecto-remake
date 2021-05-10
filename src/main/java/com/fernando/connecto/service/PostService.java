@@ -30,6 +30,12 @@ public class PostService {
         return obj.isPresent() ? obj.get() : obj.orElseThrow(() -> new ObjectNotFoundException("Post id="+id + " not found"));
     }
 
+    public List<Post> findByUserId(long userId){
+        List<Post> postList = new ArrayList<>();
+        postRepository.findAllByUserId(userId).forEach(postList::add);
+        return postList;
+    }
+
     public Post save(Post post){
         categoryService.findById(post.getCategory().getId());
         return postRepository.save(post);

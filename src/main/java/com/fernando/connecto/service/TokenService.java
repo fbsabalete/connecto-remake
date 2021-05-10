@@ -30,9 +30,9 @@ public class TokenService {
                 .setIssuer("Connecto Application")
                 .setSubject(String.valueOf(user.getId()))
                 .setIssuedAt(current)
-                .setExpiration(expirationDate)
                 .signWith(SignatureAlgorithm.HS256, secret)
                 .compact();
+        //.setExpiration(expirationDate)
     }
 
     public boolean validateToken(String token) {

@@ -20,10 +20,7 @@ public class UserAuthService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         Optional<User> user = repository.findByEmailIgnoreCase(email);
-        if (user.isPresent()) {
-            return user.map(UserDetailsImpl::new).get();
-        }
-        throw new UsernameNotFoundException("Invalid information");
+        return user.map(UserDetailsImpl::new).get();
     }
 
 

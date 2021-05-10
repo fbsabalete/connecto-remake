@@ -2,7 +2,6 @@ package com.fernando.connecto.controller;
 
 import com.fernando.connecto.model.Post;
 import com.fernando.connecto.model.dto.PostDTO;
-import com.fernando.connecto.service.CategoryService;
 import com.fernando.connecto.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -11,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/post")
@@ -27,6 +27,11 @@ public class PostController {
     @GetMapping
     public ResponseEntity<List<Post>> findAll(){
         return ResponseEntity.ok(postService.findAll());
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<PostDTO>> findByUserId(@PathVariable long userId){
+        return ResponseEntity.ok(postService.findByUserId(userId).stream().map(PostDTO::new).collect(Collectors.toList()));
     }
 
     @PostMapping

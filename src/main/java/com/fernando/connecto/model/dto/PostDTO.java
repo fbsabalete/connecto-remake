@@ -9,17 +9,30 @@ public class PostDTO {
     private String image;
     private String date;
     private boolean offering;
-    private long userId;
-    private long categoryId;
+    private UserDTO user;
+    private CategoryDTO category;
 
     public PostDTO(Post post) {
+        this.user = new UserDTO();
+        this.category = new CategoryDTO();
         this.id = post.getId();
         this.description = post.getDescription();
         this.image = post.getImage();
         this.date = post.getDate().toString();
         this.offering = post.isOffering();
-        this.userId = post.getUser().getId();
-        this.categoryId = post.getCategory().getId();
+        this.category.setId(post.getCategory().getId());
+        this.category.setName(post.getCategory().getName());
+        this.user.setId(post.getUser().getId());
+        this.user.setName(post.getUser().getName());
+        this.user.setProfilePicture(post.getUser().getProfilePicture());
+    }
+
+    public UserDTO getUser() {
+        return user;
+    }
+
+    public void setUser(UserDTO user) {
+        this.user = user;
     }
 
     public long getId() {
@@ -62,19 +75,11 @@ public class PostDTO {
         this.offering = offering;
     }
 
-    public long getUserId() {
-        return userId;
+    public CategoryDTO getCategory() {
+        return category;
     }
 
-    public void setUserId(long userId) {
-        this.userId = userId;
-    }
-
-    public long getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(long categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(CategoryDTO category) {
+        this.category = category;
     }
 }
